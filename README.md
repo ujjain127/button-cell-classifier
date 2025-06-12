@@ -217,3 +217,7 @@ print(f"Prediction: {prediction}")
 ### For real-time classification:
 
 Run the webcam code section in the Jupyter notebook to start real-time classification.
+![Screenshot 2025-06-12 182330](https://github.com/user-attachments/assets/52613f43-b2c5-42ce-ad8c-63a9e8b864d0)
+![Screenshot 2025-06-12 182421](https://github.com/user-attachments/assets/2c822816-468c-4a72-9cf3-4c500e4afbc9)
+
+
