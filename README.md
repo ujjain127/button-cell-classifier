@@ -40,7 +40,10 @@ The requirements include:
 - `Battery.ipynb`: Main notebook containing the complete pipeline
 - `button_cell_classifier.pth`: Trained model weights
 - `requirements.txt`: Required packages for the project
-- `button_cells` : Dataset
+- `button_cells/`: Dataset directory with organized views:
+  - `top_view/`: Images showing the top of button cells
+  - `side_view/`: Images showing the side profile of button cells
+  - `bottom_view/`: Images showing the bottom of button cells
 
 ## Dataset
 
@@ -62,6 +65,17 @@ The project uses the **ResNet50** architecture, which is a 50-layer deep Convolu
 - Strong performance on image classification tasks
 - Ability to learn deep representations without gradient vanishing problems due to residual connections
 - Pre-trained weights on ImageNet that provide a good starting point for transfer learning
+
+### ResNet50 Architecture Details
+
+ResNet (Residual Network) introduces the concept of "skip connections" or "shortcut connections" which allow the gradient to flow through the network directly. This helps overcome the vanishing gradient problem in very deep networks. The architecture consists of:
+
+1. **Initial Layers**: A 7×7 convolution with 64 filters, followed by batch normalization, ReLU activation, and max pooling
+2. **Residual Blocks**: Multiple residual blocks arranged in stages, with each block containing:
+   - A "bottleneck" design with 1×1, 3×3, and 1×1 convolutions
+   - Shortcut connections that skip 2-3 layers
+3. **Global Average Pooling**: Instead of fully connected layers at the end
+4. **Fully Connected Layer**: The final layer for classification (modified in our case to output 3 classes)
 
 The model architecture has been modified by:
 1. Keeping all pre-trained layers
@@ -123,6 +137,17 @@ The confusion matrix shows:
 - True positives along the diagonal
 - False positives and false negatives off the diagonal
 - The model's performance across all classes
+
+#### Reading a Confusion Matrix
+
+A confusion matrix is a table that summarizes the prediction results of a classification model:
+- Rows represent actual classes
+- Columns represent predicted classes
+- Each cell shows the count of samples from the actual class (row) predicted as the class in the column
+
+For example, if cell (0,1) shows a value of 2, it means that 2 samples of class 0 (bottom_view) were incorrectly classified as class 1 (side_view).
+
+The ideal confusion matrix would have all values on the diagonal (top-left to bottom-right) and zeros elsewhere, indicating perfect classification with no errors.
 
 ## Real-time Classification
 
